@@ -14,11 +14,12 @@ import com.user.entity.User;
 import com.user.service.UserService;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
 	
-	@Autowired
-	private RestTemplate restTemplate;
+	/*
+	 * @Autowired private RestTemplate restTemplate;
+	 */
 	@Autowired
 	private UserService service;
 	@GetMapping("/{userId}")
@@ -26,8 +27,8 @@ public class UserController {
 		
 		User muUser = service.getUser(userId);
 		//deserialize
-		List<Contact> contacts = this.restTemplate.getForObject("http://contact-service/contact/user/"+userId, List.class);
-		muUser.setContacts(contacts);
+		//List<Contact> contacts = this.restTemplate.getForObject("http://contact-service/contact/user/"+userId, List.class);
+		//muUser.setContacts(contacts);
 		return muUser;
 	}
 }
